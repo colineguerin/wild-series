@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
-    const PROGRAMS = [
+    public const PROGRAMS = [
         [
             'title' => 'Arcane',
             'synopsis' => 'In the utopian city of Piltover, sisters Vi and Jinx find themselves on opposing sides of a brewing conflict over clashing convictions and arcane technologies.',
@@ -44,11 +44,25 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setTitle($value['title']);
             $program->setSynopsis($value['synopsis']);
             $program->setCategory($this->getReference('category_' . $value['category']));
+            $this->addReference('program_' . str_replace(' ','',  $value['title']), $program);
             $manager->persist($program);
         }
         $manager->flush();
     }
 
+/*
+    public function load(ObjectManager $manager): void
+    {
+            $program = new Program();
+            $program->setTitle('Arcane');
+            $program->setSynopsis('In the utopian city of Piltover, sisters Vi and Jinx find themselves on opposing sides of a brewing conflict over clashing convictions and arcane technologies.');
+            $program->setCategory($this->getReference('category_Anime'));
+            $this->addReference('program_Arcane', $program);
+            $manager->persist($program);
+
+        $manager->flush();
+    }
+*/
     public function getDependencies()
     {
         return [

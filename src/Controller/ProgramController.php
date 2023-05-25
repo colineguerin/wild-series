@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\ProgramRepository;
+use App\Repository\SeasonRepository;
+use App\Repository\EpisodeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,18 +22,32 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show', requirements: ['id'=>'\d+'], methods: ['GET'])]
-    public function show(int $id, ProgramRepository $programRepository): Response
+    #[Route('/{id}', name: 'show', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function show(int $id, ProgramRepository $programRepository, SeasonRepository $seasonRepository): Response
     {
         $program = $programRepository->findOneBy(['id' => $id]);
         if (!$program) {
             throw $this->createNotFoundException(
-                'No program with id: '.$id.' found in program\'s table.'
+                'No program with id: ' . $id . ' found in program\'s table.'
             );
         }
+        $seasons = $seasonRepository->findBy(['program' => $program->getId()]);
         return $this->render('program/show.html.twig', [
-            'id' => $id,
-            'program' => $program
+            'program' => $program,
+            'seasons' => $seasons
+        ]);
+    }
+
+    #[Route('/{programId}/seasons/{seasonId}', name: 'season_show')]
+    public function showSeason(int $programId, int $seasonId, ProgramRepository $programRepository, SeasonRepository $seasonRepository, EpisodeRepository $episodeRepository): Response
+    {
+        $program = $programRepository->findOneBy(['id' => $programId]);
+        $season = $seasonRepository->findOneBy(['id' => $seasonId]);
+        $episodes = $episodeRepository->findBy(['season' => $season->getId()]);
+        return $this->render('program/season_show.html.twig', [
+            'program' => $program,
+            'season' => $season,
+            'episodes' => $episodes
         ]);
     }
 }
