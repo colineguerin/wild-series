@@ -3,6 +3,7 @@
 {% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
+
     <div class="media">
         <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
@@ -14,9 +15,11 @@
             <h2>Season {{ season.number }}</h2>
             <p>Description: {{ season.description }}</p>
             <p>Year: {{ season.year }}</p>
-            {% for episode in episodes %}
+            {% for episode in season.episodes %}
             <ul>
-                <li>Episode {{ episode.number }}: {{ episode.synopsis }}</li>
+                <li>
+                    <h5><a href="{{ path('program_episode_show', {programId: program.id, seasonId: season.id, episodeId: episode.id}) }}">Episode {{ episode.number }}: {{ episode.title }}</a></h5>
+                </li>
             </ul>
             {% endfor %}
         </div>

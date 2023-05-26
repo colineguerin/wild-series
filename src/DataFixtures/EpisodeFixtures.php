@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 {
-    const EPISODES = [
+    public const EPISODES = [
         [
             'season' => 1,
             'title' => 'Welcome to the playground',
@@ -33,7 +33,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
     {
         foreach (self::EPISODES as $key => $value) {
                     $episode = new Episode();
-                    $episode->setSeason($this->getReference('season_'. $value['season'] ));
+                    $episode->setSeason($this->getReference( 'season_'. $value['season'] ));
                     $episode->setTitle($value['title']);
                     $episode->setNumber($value['number']);
                     $episode->setSynopsis($value['synopsis']);

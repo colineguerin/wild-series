@@ -50,19 +50,6 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-/*
-    public function load(ObjectManager $manager): void
-    {
-            $program = new Program();
-            $program->setTitle('Arcane');
-            $program->setSynopsis('In the utopian city of Piltover, sisters Vi and Jinx find themselves on opposing sides of a brewing conflict over clashing convictions and arcane technologies.');
-            $program->setCategory($this->getReference('category_Anime'));
-            $this->addReference('program_Arcane', $program);
-            $manager->persist($program);
-
-        $manager->flush();
-    }
-*/
     public function getDependencies()
     {
         return [
