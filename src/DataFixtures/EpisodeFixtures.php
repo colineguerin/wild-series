@@ -11,18 +11,21 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 {
     public const EPISODES = [
         [
+            'program' => 'Arcane',
             'season' => 1,
             'title' => 'Welcome to the playground',
             'number' => 1,
             'synopsis' => 'Sisters Powder and Vi find their parents dead among the bodies and the rubble of a battle on a bridge. They are taken in by Vander, the leader of the failed rebellion, as his own children. Years later, Vi and Powder rob a Piltover penthouse with their adopted brothers, Mylo and Claggor. Powder steals a set of magical crystals and accidentally shatters one. This causes an explosion that destroys a large portion of the building. Returning to the undercity, the siblings encounter Deckard and his thugs; while they beat them in a fistfight, Powder is chased and loses the loot. Vander, now a community leader in Zaun, scolds the children for their carelessness, and attempts to smooth things over with Grayson, the Sheriff of the enforcers, and her subordinate Marcus. Vi berates Mylo for calling Powder a "jinx" and reassures her sister that things will get better. In the lowest parts of the undercity, crime lord Silco extracts information from Deckard and tests a new mutagen known as Shimmer on a rat.',
         ],
         [
+            'program' => 'Arcane',
             'season' => 1,
             'title' => 'Some Mysteries Are Better Left Unsolved',
             'number' => 2,
             'synopsis' => "The crystals that Powder stole turn out to belong to Jayce Talis, a student at Piltover's academy. Piltover's ruling council has him testify about using illegal equipment in unsanctioned experiments. Jayce was saved by arcane magic as a child and believes it can be a new resource for Piltover's evolution. The academy expels him when he admits the magical nature of the experiments, and his research is ordered to be destroyed. On the verge of suicide, his beliefs are renewed when Viktor, the disabled assistant of the academy's professor Heimerdinger, offers to help him. In Zaun, Marcus pressures Vander to reveal the true culprits of the robbery, while Zaunites pressure him to fight back against the interference of the enforcers. He chooses to keep his family safe and remain neutral, leaving some unsure of his leadership. Vi decides to turn herself in. Meanwhile, Silco manipulates Deckard into swallowing a vial of Shimmer."
         ],
         [
+            'program' => 'Arcane',
             'season' => 1,
             'title' => 'The Base Violence Necessary for Change',
             'number' => 3,
@@ -33,7 +36,7 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
     {
         foreach (self::EPISODES as $key => $value) {
                     $episode = new Episode();
-                    $episode->setSeason($this->getReference( 'season_'. $value['season'] ));
+                    $episode->setSeason($this->getReference( 'program_' . $value['program'] . 'season_'. $value['season'] ));
                     $episode->setTitle($value['title']);
                     $episode->setNumber($value['number']);
                     $episode->setSynopsis($value['synopsis']);

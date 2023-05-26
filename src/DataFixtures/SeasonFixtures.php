@@ -18,25 +18,25 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'program' => 'Avatar the last airbender',
-            'number' => 2,
+            'number' => 1,
             'year' => 2000,
             'description' => 'Aang meets Katara and Sokha and tries to master waterbending.'
         ],
         [
             'program' => 'Scrubs',
-            'number' => 3,
+            'number' => 1,
             'year' => 2007,
             'description' => 'Dorian starts his internship at the Sacred Heart Hospital.'
         ],
         [
             'program' => 'House of the dragon',
-            'number' => 4,
+            'number' => 1,
             'year' => 2022,
             'description' => 'Prequel and first installments of the Dance of the Dragons.'
         ],
         [
             'program' => 'Outlander',
-            'number' => 5,
+            'number' => 1,
             'year' => 2015,
             'description' => 'Claire\'s arrival in the Highlands.'
         ]
@@ -50,7 +50,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
                 $season->setNumber($value['number']);
                 $season->setYear($value['year']);
                 $season->setDescription($value['description']);
-                $this->addReference('season_' . $value['number'], $season);
+                $this->addReference('program_' . $value['program'] . 'season_' . $value['number'], $season);
                 $manager->persist($season);
         }
         $manager->flush();
