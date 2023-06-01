@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Series{% endblock %}
+
+{% block body %}
+    <h1>All actors </h1>
+    {% for actor in actors %}
+        <ul class="list-group-flush">
+            <li class="list-group-item"><a href="{{ path("actor_show", { id: actor.id }) }}" class="text-decoration-none">{{ actor.name }}</a></li>
+        </ul>
+    {% else %}
+        No actor has been found.
+    {% endfor %}
+
+    <div style="width: 100%;" class="text-center my-5">
+        <a href="{{ path('app_index') }}" class="font-weight-bold text-decoration-none">
+            Back home
+        </a>
+    </div>
+{% endblock %}
