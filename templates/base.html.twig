@@ -20,7 +20,7 @@
         <div class="m-3">
             {% for category, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ category }}">
+                    <div class="alert alert-{{ category }} w-25">
                         {{ message }}
                     </div>
                 {% endfor %}

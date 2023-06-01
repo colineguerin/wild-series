@@ -5,14 +5,16 @@
 {% block body %}
     <h1>All categories </h1>
     {% for category in categories %}
-        <ul>
-            <li>{{ loop.index }} / <a href="{{ path("category_show", { categoryName: category.name }) }}">{{ category.name }}</a></li>
+        <ul class="list-group-flush">
+            <li class="list-group-item"><a href="{{ path("category_show", { categoryName: category.name }) }}" class="text-decoration-none">{{ category.name }}</a></li>
         </ul>
     {% else %}
         No category has been found.
     {% endfor %}
 
-    <a href="{{ path('app_index') }}">
-        Home
-    </a>
+    <div style="width: 100%;" class="text-center my-5">
+        <a href="{{ path('app_index') }}" class="font-weight-bold text-decoration-none">
+            Back home
+        </a>
+    </div>
 {% endblock %}

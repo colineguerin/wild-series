@@ -8,3 +8,19 @@ $secondary: #4C956C;
 body {
     background-color: #FEFEE3;
 }
+
+h1 {
+    color: #2C6E49;
+}
+
+.ws-large-img {
+    height: 400px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.ws-small-img {
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+}

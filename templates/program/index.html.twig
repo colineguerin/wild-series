@@ -3,18 +3,31 @@
 {% block title %}Programs{% endblock %}
 
 {% block body %}
-    <h1>All our programs </h1>
-    {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / <a href="{{ path("program_show", { id: program.id }) }}">{{ program.title }}</a></h2>
-            <h5>Category: {{ program.category.name }}</h5>
-            <p>{{ program.synopsis }}</p>
+    <div>
+        <h1 class="text-center m-5">All our programs</h1>
+        <div class="d-flex flex-wrap justify-content-evenly">
+            {% for program in programs %}
+                <div class="card w-25 m-3">
+                    <img class="card-img-top img-thumbnail ws-small-img" src="/build/{{ program.poster }}" alt="{{ program.title }} poster">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <h5 class="card-title" style="color: #D68C45;"><a href="{{ path("program_show", { id: program.id }) }}">{{ program.title }}</a></h5>
+                        <p class="card-text">{{ program.synopsis }}</p>
+                        <p class="card-text"><small class="text-muted">Category: {{ program.category.name }}</small></p>
+                        <div class="d-flex justify-content-end">
+                            <a href="{{ path("program_edit", { id: program.id }) }}" class="card-link text-decoration-none">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                No program has been found.
+            {% endfor %}
         </div>
-    {% else %}
-        No program has been found.
-    {% endfor %}
 
-    <a href="{{ path('app_index') }}">
-        Home
-    </a>
+        <div style="width: 100%;" class="text-center my-5">
+            <a href="{{ path('app_index') }}" class="font-weight-bold text-decoration-none">
+                Back home
+            </a>
+        </div>
+    </div>
+
 {% endblock %}

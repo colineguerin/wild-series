@@ -3,13 +3,22 @@
 {% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
-    <div class="media">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
-        <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
-            <p>{{ program.synopsis }}</p>
-            <p>Category: {{ program.category.name }}</p>
+    <div class="card w-50 m-auto">
+        <img class="card-img-top img-thumbnail ws-large-img" src="/build/{{ program.poster }}" alt="{{ program.title }} poster">
+        <div class="card-body d-flex flex-column justify-content-between">
+            <h1 class="card-title" style="color: #D68C45;">{{ program.title }}</h1>
+            <p class="card-text">{{ program.synopsis }}</p>
+            <p class="card-text"><small class="text-muted">Category: {{ program.category.name }}</small></p>
+            <h5>Actors:</h5>
+            <ul>
+                {% for actor in program.actors %}
+                    <li>{{ actor.name }}</li>
+                {% else %}
+                    <li>No actor listed for this program</li>
+                {% endfor %}
+            </ul>
         </div>
+
         {% for season in seasons %}
             <ul>
                 <li><a href="{{ path('program_season_show', {programId: program.id, seasonId: season.id}) }}">Season {{ season.number }}</a></li>
