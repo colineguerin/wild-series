@@ -1,0 +1,11 @@
+{% extends 'layoutEmail.html.twig' %}
+
+{% block title %}New program!{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>New program created on Wild Series</h1>
+        <p>Hello, the new program {{ program.title }} has been created. Check it out <a href="{{ path("program_show", { id: program.id }) }}">here</a>!</p>
+        <p>Thank you for your subscription!</p>
+    </div>
+{% endblock %}

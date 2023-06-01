@@ -8,6 +8,8 @@ use App\Entity\Season;
 use App\Repository\ProgramRepository;
 use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use App\Form\ProgramType;
@@ -29,17 +31,26 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(Request $request, ProgramRepository $programRepository) : Response
+    public function new(Request $request, MailerInterface $mailer, ProgramRepository $programRepository) : Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $programRepository->save($program, true);
+
+            $email = (new Email())
+                ->from('wilder@wildseries.com')
+                ->to('your_email@example.com')
+                ->subject('New program added!')
+                ->html($this->renderView('program/newProgramEmail.html.twig', ['program' => $program]));
+            $mailer->send($email);
+
             $this->addFlash(
                 'success',
                 'New program successfully added.'
             );
+
             return $this->redirectToRoute('program_index', [], Response::HTTP_SEE_OTHER);
         }
 
