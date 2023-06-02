@@ -3,8 +3,30 @@
 {% block title %}Programs{% endblock %}
 
 {% block body %}
+
+
     <div>
         <h1 class="text-center m-5">All our programs</h1>
+        {% for program in programs %}
+        <div class="card mb-3 d-flex flex-row">
+            <img class="card-img-top img-thumbnail ws-row-img" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ path("program_show", { id: program.id }) }}">{{ program.title }}</a></h5>
+                <p class="card-text">{{ program.synopsis }}</p>
+                <p class="card-text"><small class="text-muted">Category: {{ program.category.name }}</small></p>
+                <div class="d-flex justify-content-end">
+                    <a href="{{ path("program_edit", { id: program.id }) }}" class="card-link text-decoration-none">Edit</a>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            No program has been found.
+        {% endfor %}
+
+
+
+
+        {#
         <div class="d-flex flex-wrap justify-content-evenly">
             {% for program in programs %}
                 <div class="card w-25 m-3">
@@ -22,7 +44,7 @@
                 No program has been found.
             {% endfor %}
         </div>
-
+    #}
         <div style="width: 100%;" class="text-center my-5">
             <a href="{{ path('app_index') }}" class="font-weight-bold text-decoration-none">
                 Back home

@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="card w-50 m-auto">
-        <img class="card-img-top img-thumbnail" src="/build/{{ program.poster }}" alt="{{ program.title }} poster">
+        <img class="card-img-top img-thumbnail ws-large-img" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
         <div class="card-body d-flex flex-column justify-content-between">
             <h1 class="card-title" style="color: #D68C45;">{{ program.title }}</h1>
             <h5>Season {{ season.number }}</h5>
