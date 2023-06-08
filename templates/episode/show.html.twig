@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode{% endblock %}
-
 {% block body %}
     <h1>Episode</h1>
 
@@ -25,6 +23,19 @@
             </tr>
         </tbody>
     </table>
+
+    <ul>
+    {% for comment in comments %}
+        <li>
+            <p>{{ comment.user.username }} wrote :</p>
+            <p>{{ comment.comment }}</p>
+        </li>
+        </ul>
+    {% endfor %}
+
+    {% if app.user %}
+        {% include('comment/new.html.twig') %}
+    {% endif %}
 
     <a href="{{ path('app_episode_index') }}">back to list</a>
 
