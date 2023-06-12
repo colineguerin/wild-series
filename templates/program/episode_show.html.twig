@@ -18,22 +18,25 @@
             Back to programs
         </a>
     </div>
-    <ul>
-    {% for comment in comments %}
-        <li>
-            <h5>{{ comment.user.username }} wrote:</h5>
-            <p>{{ comment.comment }}</p>
-        </li>
-        </ul>
-    {% endfor %}
 
-    {% if app.user %}
-        {% include('comment/new.html.twig') %}
-    {% endif %}
 
     <a href="{{ path('app_episode_index') }}">back to list</a>
 
     <a href="{{ path('app_episode_edit', {'id': episode.id}) }}">edit</a>
 
     {{ include('episode/_delete_form.html.twig') }}
+
+    <h2>Comments</h2>
+    <ul>
+    {% for comment in comments %}
+        <li>
+            <h5>{{ comment.user.username }} wrote:</h5>
+            <p>{{ comment.comment }}</p>
+        </li>
+    {% endfor %}
+        </ul>
+
+    {% if is_granted("ROLE_CONTRIBUTOR") %}
+        {% include('comment/new.html.twig') %}
+    {% endif %}
 {% endblock %}

@@ -40,6 +40,7 @@ class ProgramController extends AbstractController
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $program->setOwner($this->getUser());
             $programRepository->save($program, true);
 
             $email = (new Email())
@@ -76,6 +77,9 @@ class ProgramController extends AbstractController
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Program $program, ProgramRepository $programRepository): Response
     {
+        if ($this->getUser() !== $program->getOwner()) {
+            throw $this->createAccessDeniedException('Only the owner can edit the program.');
+        }
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
