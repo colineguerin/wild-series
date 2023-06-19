@@ -13,34 +13,13 @@
                     <a class="nav-link text-light" href="/actor">Actors</a>
                 </li>
                 {{ component('NavbarComponent') }}
-                <!--
-                <li class="nav-item dropdown px-3">
-                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/category">All</a></li>
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Adventure</a></li>
-                        <li><a class="dropdown-item" href="#">Anime</a></li>
-                        <li><a class="dropdown-item" href="#">Fantasy</a></li>
-                        <li><a class="dropdown-item" href="#">Humor</a></li>
-                        <li><a class="dropdown-item" href="#">Romance</a></li>
-                        <li><a class="dropdown-item" href="#">Thriller</a></li>
-                    </ul>
-                </li>
-                -->
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary btn-outline-success text-light" type="submit">Search</button>
-            </form>
             <div>
                 {% if app.user %}
                     {{ app.user.email }}
-                    <a href="{{ path('app_logout') }}"> Se déconnecter</a>
+                    <button class="btn btn-primary"><a href="{{ path('app_logout') }}" class="text-decoration-none text-light">Se déconnecter</a></button>
                 {% else %}
-                    <a href="{{ path('app_login') }}"> Se connecter</a>
+                    <button class="btn btn-primary"><a href="{{ path('app_login') }}" class="text-decoration-none text-light">Se connecter</a></button>
                 {% endif %}
             </div>
         </div>

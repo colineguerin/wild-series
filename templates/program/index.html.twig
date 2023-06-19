@@ -5,6 +5,14 @@
 {% block body %}
     <div>
         <h1 class="text-center m-5">All our programs</h1>
+            <form class="w-25 d-inline-flex mb-3" method="{{ form.vars.method }}" action="{{ form.vars.action }}">
+                {{ form_start(form) }}
+                <div class="form-group me-2">
+                    {{ form_widget(form.search, { 'attr': {'class': 'form-control'} }) }}
+                </div>
+                <button class="btn btn-primary text-light border-0" type="submit">Search</button>
+                {{ form_end(form) }}
+            </form>
         {% for program in programs %}
         <div class="card mb-3 d-flex flex-row w-75">
             <img class="card-img-top img-thumbnail ws-row-img" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">

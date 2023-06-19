@@ -1,7 +1,7 @@
 $light: #FEFEE3;
 $dark: #2C6E49;
 $primary: #D68C45;
-$secondary: #4C956C;
+$secondary: #2C6E49;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -27,7 +27,7 @@ h1 {
 
 .ws-sidebar {
   position: fixed;
-  top: 200px;
+  top: 253px;
   right: 20px;
   width: 350px;
   height: 50vh;
