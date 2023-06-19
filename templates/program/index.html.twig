@@ -3,12 +3,10 @@
 {% block title %}Programs{% endblock %}
 
 {% block body %}
-
-
     <div>
         <h1 class="text-center m-5">All our programs</h1>
         {% for program in programs %}
-        <div class="card mb-3 d-flex flex-row">
+        <div class="card mb-3 d-flex flex-row w-75">
             <img class="card-img-top img-thumbnail ws-row-img" src="{{ vich_uploader_asset(program) }}" alt="{{ program.title }} poster">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ path("program_show", { id: program.id }) }}">{{ program.title }}</a></h5>
@@ -22,8 +20,7 @@
         {% else %}
             No program has been found.
         {% endfor %}
-
-
+        {{ component('LastEpisodeComponent') }}
 
 
         {#

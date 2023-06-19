@@ -6,21 +6,32 @@ $secondary: #4C956C;
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    background-color: #FEFEE3;
+  background-color: #FEFEE3;
 }
 
 h1 {
-    color: #2C6E49;
+  color: #2C6E49;
 }
 
 .ws-large-img {
-    height: 400px;
-    object-fit: cover;
-    object-position: top;
+  height: 400px;
+  object-fit: cover;
+  object-position: top;
 }
 
 .ws-row-img {
-    width: 400px;
-    object-fit: cover;
-    object-position: top;
+  width: 400px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.ws-sidebar {
+  position: fixed;
+  top: 200px;
+  right: 20px;
+  width: 350px;
+  height: 50vh;
+  background-color: white;
+  padding: 20px;
+  overflow-y: auto;
 }

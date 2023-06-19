@@ -1,0 +1,10 @@
+<div{{ attributes }}>
+    <aside class="ws-sidebar card">
+        <h3 class="pb-3">Last episodes added</h3>
+        <ul>
+            {% for episode in this.lastEpisodes %}
+                <li class="pb-3"><a href="{{ path('app_episode_show', {'id': episode.id}) }}">Episode n° {{ episode.number }}:</a> {{ episode.title }}</li>
+            {% endfor %}
+        </ul>
+    </aside>
+</div>
